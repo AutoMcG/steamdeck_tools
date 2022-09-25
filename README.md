@@ -35,5 +35,3 @@ Video file credits:
 # Known Issues
 
 Video files must not have spaces in the names. Prefer underscores or camelCase or PascalCase to spaces.
-
-library.css is currently a static copy and will break next time SteamOS updates. Actively looking into resolution.
