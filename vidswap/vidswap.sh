@@ -1,5 +1,19 @@
 #!/bin/bash
 
+#init
+file_to_pick=0
+
+while getopts ":n:" option; do
+    case $option in
+        n) #random number
+            file_to_pick=$OPTARG;;
+        \?) #Invalid
+            echo "Wrong usage";;
+    esac
+done
+
+echo "File to pick: $file_to_pick"
+
 RED='\033[0;31m'
 NC='\033[0m'
 echo "======================================="
@@ -10,13 +24,15 @@ echo -e "${RED}It is provided as-is without any warranty. Use at your own risk!$
 echo "With that out of the way, so far during testing if anything goes wrong,"
 echo "steam automatically replaces files without any lasting negative impact."
 echo ""
-read -p "Do you wish to continue? (y/n)" -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]
-then
-    echo "Exiting..."
-    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+if ((file_to_pick==0)); then
+    read -p "Do you wish to continue? (y/n)" -n 1 -r
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Exiting..."
+        [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+    fi
 fi
+echo
+
 #paths to vid file, css file
 vid_path=/home/deck/.local/share/Steam/steamui/movies/deck_startup.webm
 css_path=/home/deck/.local/share/Steam/steamui/css/library.css
@@ -29,14 +45,20 @@ new_vid_files=($new_vid_dir*)
 #choose desired video file
 counter=1
 declare -A file_choice
-echo "Enter number of video file you wish to install:"
+
 for i in "${new_vid_files[@]}" ; do
 	file_choice[$counter]=$i
 	echo "$counter. $i"
 	let counter++
 done
 
-read choice
+if ((file_to_pick==0)); then
+    echo "Enter number of video file you wish to install:"
+    read choice
+else
+    choice=$file_to_pick
+fi
+
 if [[ $choice =~ [^0-9]+ ]]; then
     echo "Entry was not a number!"
     exit 5
@@ -58,6 +80,7 @@ echo "Resizing $new_css_path to $css_size"
 echo "Copying $selected_file to $vid_path"
 echo "Copying $new_css_path to $css_path"
 #copy files to tmp, resize
+#TODO: Add protection in case generated filepaths are empty
 tmp_vid=/tmp/$(basename $selected_file)
 tmp_css=/tmp/$(basename $new_css_path)
 cp $selected_file /tmp/$(basename $selected_file)
