@@ -1,0 +1,9 @@
+[Unit]
+Description=Sets a random startup video on startup
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/deck/repos/steamdeck_tools/vidswap/vidswap.sh
+
+[Install]
+WantedBy=default.target
