@@ -32,5 +32,6 @@ Video file credits:
 | Seinfeld.webm | /u/DerpinHerps |
 | office.webm | /u/DerpinHerps |
 
+# Known Issues
 
-
+Video files must not have spaces in the names. Prefer underscores or camelCase or PascalCase to spaces.
