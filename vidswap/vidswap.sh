@@ -83,6 +83,7 @@ echo "Copying $selected_file to $vid_path"
 echo "Files will be copied to /tmp/ and modified there"
 >>>>>>> 0ad7333 (Updated proposed text)
 #copy files to tmp before modification
+#TODO: Add protection in case generated filepaths are empty
 tmp_vid=/tmp/$(basename $selected_file)
 tmp_css=/tmp/$(basename $css_path)
 cp $selected_file $tmp_vid
