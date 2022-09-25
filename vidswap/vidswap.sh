@@ -40,7 +40,7 @@ read choice
 if [[ $choice =~ [^0-9]+ ]]; then
     echo "Entry was not a number!"
     exit 5
-elif (($choice < 1 || $choice > ${!file_choice[@]})); then
+elif (($choice < 1 || $choice > ${#file_choice[@]})); then
     echo "Choice was not in range."
     exit 6
 fi
