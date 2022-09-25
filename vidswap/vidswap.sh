@@ -52,9 +52,9 @@ css_size=$(stat --printf="%s" $css_path)
 echo "Original video size: $vid_size"
 echo "Original css size: $css_size"
 #display propsed changes
-echo "Resizing $selected_file to $vid_size"
+echo "Resizing $selected_file to $vid_size and copying to $vid_path"
 echo "Changing content in $css_path and resizing to $css_size"
-echo "Copying $selected_file to $vid_path"
+echo "Files will be copied to /tmp/ and modified there"
 #copy files to tmp before modification
 tmp_vid=/tmp/$(basename $selected_file)
 tmp_css=/tmp/$(basename $css_path)
