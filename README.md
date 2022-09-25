@@ -20,6 +20,7 @@ The selected video file should then play every time the steam deck enters gaming
 # Credits
 
 HUGE credit to /u/DerpinHerps for their amazing startup videos and work pioneering the process.
+
 Vidswap is basically just a scripted version of the process they identified.
 
 Video file credits:
