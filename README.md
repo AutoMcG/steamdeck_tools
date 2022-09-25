@@ -31,6 +31,7 @@ Video file credits:
 | Futurama.webm | /u/DerpinHerps |
 | Seinfeld.webm | /u/DerpinHerps |
 | office.webm | /u/DerpinHerps |
+| TheCritic.webm | /u/TinyBruce |
 
 # Known Issues
 
