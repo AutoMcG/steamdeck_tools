@@ -39,10 +39,10 @@ done
 read choice
 if [[ $choice =~ [^0-9]+ ]]; then
     echo "Entry was not a number!"
-    exit 128
+    exit 5
 elif (($choice < 1 || $choice > counter)); then
     echo "Choice was not in range."
-    exit 128
+    exit 6
 fi
 
 echo "$choice selected which corresponds to ${file_choice[$choice]}"
