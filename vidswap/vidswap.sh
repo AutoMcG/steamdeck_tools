@@ -76,12 +76,7 @@ echo "Original css size: $css_size"
 #display propsed changes
 echo "Resizing $selected_file to $vid_size and copying to $vid_path"
 echo "Changing content in $css_path and resizing to $css_size"
-<<<<<<< HEAD
-echo "Copying $selected_file to $vid_path"
-#TODO: Add protection in case generated filepaths are empty
-=======
 echo "Files will be copied to /tmp/ and modified there"
->>>>>>> 0ad7333 (Updated proposed text)
 #copy files to tmp before modification
 #TODO: Add protection in case generated filepaths are empty
 tmp_vid=/tmp/$(basename $selected_file)
