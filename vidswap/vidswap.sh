@@ -18,11 +18,10 @@ then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 fi
 #paths to vid file, css file
-vid_path=/home/deck/.local/share/Steam/steamui/movies/deck_startup.webm
-css_path=/home/deck/.local/share/Steam/steamui/css/library.css
+vid_path="/home/deck/.local/share/Steam/steamui/movies/deck_startup.webm"
+css_path="/home/deck/.local/share/Steam/steamui/css/library.css"
 
-new_css_path=./library.css
-new_vid_dir=./vids/
+new_vid_dir="./vids/"
 shopt -s nullglob
 new_vid_files=($new_vid_dir*)
 
@@ -54,16 +53,20 @@ echo "Original video size: $vid_size"
 echo "Original css size: $css_size"
 #display propsed changes
 echo "Resizing $selected_file to $vid_size"
-echo "Resizing $new_css_path to $css_size"
+echo "Changing content in $css_path and resizing to $css_size"
 echo "Copying $selected_file to $vid_path"
-echo "Copying $new_css_path to $css_path"
-#copy files to tmp, resize
+#copy files to tmp before modification
 tmp_vid=/tmp/$(basename $selected_file)
-tmp_css=/tmp/$(basename $new_css_path)
-cp $selected_file /tmp/$(basename $selected_file)
-cp $new_css_path /tmp/$(basename $new_css_path)
+tmp_css=/tmp/$(basename $css_path)
+cp $selected_file $tmp_vid
+cp $css_path $tmp_css
+#make css substitusion
+old_video_setting="video{flex-grow:0;width:300px;height:300px;z-index:10}"
+new_video_setting="video{flex-grow:1;width:100%;height:100%;z-index:10}"
+sed -i -e"s/$old_video_setting/$new_video_setting/" $tmp_css
+#resize files in tmp
 truncate -s $(($vid_size)) $tmp_vid
 truncate -s $(($css_size)) $tmp_css
-#copy/replace files
+#copy files from tmp, overwrite originals
 cp $tmp_vid $vid_path
 cp $tmp_css $css_path
