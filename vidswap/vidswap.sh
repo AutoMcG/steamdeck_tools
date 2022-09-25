@@ -40,7 +40,7 @@ read choice
 if [[ $choice =~ [^0-9]+ ]]; then
     echo "Entry was not a number!"
     exit 5
-elif (($choice < 1 || $choice > counter)); then
+elif (($choice < 1 || $choice > ${#file_choice[@]})); then
     echo "Choice was not in range."
     exit 6
 fi
@@ -57,9 +57,13 @@ echo "Resizing $selected_file to $vid_size"
 echo "Resizing $new_css_path to $css_size"
 echo "Copying $selected_file to $vid_path"
 echo "Copying $new_css_path to $css_path"
-#resize files
-truncate -s $(($vid_size)) $selected_file
-truncate -s $(($css_size)) $new_css_path
+#copy files to tmp, resize
+tmp_vid=/tmp/$(basename $selected_file)
+tmp_css=/tmp/$(basename $new_css_path)
+cp $selected_file /tmp/$(basename $selected_file)
+cp $new_css_path /tmp/$(basename $new_css_path)
+truncate -s $(($vid_size)) $tmp_vid
+truncate -s $(($css_size)) $tmp_css
 #copy/replace files
-cp $selected_file $vid_path
-cp $new_css_path $css_path
+cp $tmp_vid $vid_path
+cp $tmp_css $css_path
