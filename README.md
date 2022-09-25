@@ -11,7 +11,7 @@ You may need to chmod +x the .sh files for them to work.
 
 Vidswap was created to replace the deck startup video file with a file of the user's choice.
 
-When ./replace_vid.sh is run, it reads all files within the 'vids' folder and displays a numbered list of the files.
+When ./vidswap.sh is run, it reads all files within the 'vids' folder and displays a numbered list of the files.
 
 The user then enters the number corresponding to the video they want to put into place.
 
@@ -20,6 +20,7 @@ The selected video file should then play every time the steam deck enters gaming
 # Credits
 
 HUGE credit to /u/DerpinHerps for their amazing startup videos and work pioneering the process.
+
 Vidswap is basically just a scripted version of the process they identified.
 
 Video file credits:
@@ -31,5 +32,8 @@ Video file credits:
 | Seinfeld.webm | /u/DerpinHerps |
 | office.webm | /u/DerpinHerps |
 
+# Known Issues
 
+Video files must not have spaces in the names. Prefer underscores or camelCase or PascalCase to spaces.
 
+library.css is currently a static copy and will break next time SteamOS updates. Actively looking into resolution.
