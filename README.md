@@ -11,7 +11,7 @@ You may need to chmod +x the .sh files for them to work.
 
 Vidswap was created to replace the deck startup video file with a file of the user's choice.
 
-When ./replace_vid.sh is run, it reads all files within the 'vids' folder and displays a numbered list of the files.
+When ./vidswap.sh is run, it reads all files within the 'vids' folder and displays a numbered list of the files.
 
 The user then enters the number corresponding to the video they want to put into place.
 
