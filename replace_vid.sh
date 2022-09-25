@@ -4,8 +4,8 @@
 vid_path=/home/deck/.local/share/Steam/steamui/movies/deck_startup.webm
 css_path=/home/deck/.local/share/Steam/steamui/css/library.css
 
-new_css_path=/home/deck/vidswap/library.css
-new_vid_dir=/home/deck/vidswap/vids/
+new_css_path=./library.css
+new_vid_dir=./vids/
 shopt -s nullglob
 new_vid_files=($new_vid_dir*)
 
@@ -15,7 +15,7 @@ declare -A file_choice
 for i in "${new_vid_files[@]}" ; do
 	file_choice[$counter]=$i
 	echo "$counter. $i"
-	let counter=$counter+1
+	let counter++
 done
 
 read choice
