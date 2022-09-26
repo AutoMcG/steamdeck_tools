@@ -36,12 +36,15 @@ for i in "${new_vid_files[@]}" ; do
 done
 
 read choice
-if [[ $choice =~ [^0-9]+ ]]; then
-    echo "Entry was not a number!"
+if [[ -z $choice ]]; then
+    echo "Empty input received. Exiting..."
     exit 5
+elif [[ $choice =~ [^0-9]+ ]]; then
+    echo "Entry was not a number!"
+    exit 6
 elif (($choice < 1 || $choice > ${#file_choice[@]})); then
     echo "Choice was not in range."
-    exit 6
+    exit 7
 fi
 
 echo "$choice selected which corresponds to ${file_choice[$choice]}"
