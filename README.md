@@ -6,6 +6,8 @@ A repository for a random grouping of tools created for the Steam Deck.
 
 Download or clone this repository onto your steam deck.
 
+https://user-images.githubusercontent.com/31704955/192400391-af206162-b228-443e-ad3a-d5f5713fef7a.mp4
+
 # Vidswap
 
 Vidswap was created to replace the deck startup video file with a file of the user's choice.
@@ -17,8 +19,6 @@ The user then enters the number corresponding to the video they want to put into
 The selected video file should then play every time the steam deck enters gaming mode.
 
 To run the script, you can either invoke it in terminal or double-click the vidswap.desktop file when in desktop mode.
-
-https://user-images.githubusercontent.com/31704955/192400391-af206162-b228-443e-ad3a-d5f5713fef7a.mp4
 
 # Credits
 
