@@ -3,8 +3,8 @@ Description=Sets a random startup video on startup
 
 [Service]
 Type=oneshot
-WorkingDirectory=/home/deck/repos/steamdeck_tools/vidswap/
-ExecStart=/bin/bash /home/deck/repos/steamdeck_tools/vidswap/vidrandom.sh
+WorkingDirectory=/home/deck/repos/steamdeck_tools/vidswap
+ExecStart=/bin/bash /home/deck/repos/steamdeck_tools/vidswap/randomizer.sh
 
 [Install]
 WantedBy=default.target
