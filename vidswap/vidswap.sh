@@ -1,5 +1,19 @@
 #!/bin/bash
 
+#init
+file_to_pick=0
+
+while getopts ":n:" option; do
+    case $option in
+        n) #random number
+            file_to_pick=$OPTARG;;
+        \?) #Invalid
+            echo "Wrong usage";;
+    esac
+done
+
+echo "File to pick: $file_to_pick"
+
 RED='\033[0;31m'
 NC='\033[0m'
 echo "======================================="
@@ -10,13 +24,16 @@ echo -e "${RED}It is provided as-is without any warranty. Use at your own risk!$
 echo "With that out of the way, so far during testing if anything goes wrong,"
 echo "steam automatically replaces files without any lasting negative impact."
 echo ""
-read -p "Do you wish to continue? (y/n)" -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]
-then
-    echo "Exiting..."
-    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+if ((file_to_pick==0)); then
+    read -p "Do you wish to continue? (y/n)" -n 1 -r
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Exiting..."
+        [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+    fi
 fi
+
+echo
+
 #paths to vid file, css file
 vid_path="/home/deck/.local/share/Steam/steamui/movies/deck_startup.webm"
 css_path="/home/deck/.local/share/Steam/steamui/css/library.css"
@@ -25,17 +42,24 @@ new_vid_dir="./vids/"
 shopt -s nullglob
 new_vid_files=($new_vid_dir*)
 
-#choose desired video file
+#build hashtable for input videos
 counter=1
 declare -A file_choice
-echo "Enter number of video file you wish to install:"
 for i in "${new_vid_files[@]}" ; do
 	file_choice[$counter]=$i
 	echo "$counter. $i"
 	let counter++
 done
 
-read choice
+#prompt if input arg not provided
+if ((file_to_pick==0)); then
+    echo "Enter number of video file you wish to install:"
+    read choice
+else
+    choice=$file_to_pick
+fi
+
+#choice input validation
 if [[ -z $choice ]]; then
     echo "Empty input received. Exiting..."
     exit 5
@@ -62,6 +86,7 @@ echo "Changing content in $css_path and resizing to $css_size"
 echo "Files will be copied to /tmp/ and modified there"
 
 #copy files to tmp before modification
+#TODO: Add protection in case generated filepaths are empty
 tmp_vid=/tmp/$(basename $selected_file)
 tmp_css=/tmp/$(basename $css_path)
 cp $selected_file $tmp_vid

@@ -1,0 +1,7 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Terminal=true
+Name=Vidswap
+Exec=bash -c 'cd "$(dirname %k)/vidswap" && ./randomizer.sh;$SHELL'
+Categories=Application
