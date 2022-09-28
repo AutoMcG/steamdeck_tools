@@ -4,7 +4,9 @@ A repository for a random grouping of tools created for the Steam Deck.
 
 # Install
 
-Download or clone this repository onto your steam deck. Double-click the .desktop file for what action you wish to take
+Download or clone this repository onto your steam deck. Double-click the .desktop file for what action you wish to take. 
+
+It is highly recommended that you place this folder in /home/deck/ for greatest chance for success!
 
 https://user-images.githubusercontent.com/31704955/192400391-af206162-b228-443e-ad3a-d5f5713fef7a.mp4
 
