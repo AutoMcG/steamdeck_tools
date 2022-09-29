@@ -4,11 +4,7 @@ A repository for a random grouping of tools created for the Steam Deck.
 
 # Install
 
-Download or clone this repository onto your steam deck. Double-click the .desktop file for what action you wish to take. 
-
-It is highly recommended that you place this folder in /home/deck/ for greatest chance for success!
-
-https://user-images.githubusercontent.com/31704955/192400391-af206162-b228-443e-ad3a-d5f5713fef7a.mp4
+Download or clone this repository onto your steam deck.
 
 # Vidswap
 
@@ -22,15 +18,7 @@ The selected video file should then play every time the steam deck enters gaming
 
 To run the script, you can either invoke it in terminal or double-click the vidswap.desktop file when in desktop mode.
 
-# Randomizer
-
-Randomizer builds on Vidswap and provides two features: individual random set and on-boot randomization.
-
-If you'd like to set the next video randomly, execute randomizer.desktop (or run ./vidswap/randomzier.sh).
-
-If you'd like to set a new random video for every boot, execute random_every_boot.desktop (or run ./vidswap/random_service_install.sh).
-
-To stop the random every boot, execute uninstall_every_boot.desktop (or run ./vidswap/random_service_uninstall.sh).
+https://user-images.githubusercontent.com/31704955/192400391-af206162-b228-443e-ad3a-d5f5713fef7a.mp4
 
 # Credits
 
@@ -42,14 +30,15 @@ Video file credits:
 | Filename | Author |
 | -------- | ------ |
 | BreakingBad.webm | /u/DerpinHerps |
-| CowboyBebop.webm | /u/MatPaget |
+| BetterCallSaul.webm | /u/Minkarii |
 | Frasier.webm | /u/DerpinHerps |
 | Futurama.webm | /u/DerpinHerps |
-| NeoGeo.webm | /u/TareXmd |
+| NeoGeo.webm | /u/TareXmd | 
 | RickMorty.webm | /u/BeefyDragon |
 | Seinfeld.webm | /u/DerpinHerps |
 | TheCritic.webm | /u/TinyBruce |
 | office.webm | /u/DerpinHerps |
+
 
 # Known Issues
 
