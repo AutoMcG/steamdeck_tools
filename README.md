@@ -42,14 +42,14 @@ Video file credits:
 | Filename | Author |
 | -------- | ------ |
 | BreakingBad.webm | /u/DerpinHerps |
+| CowboyBebop.webm | /u/MatPaget |
 | Frasier.webm | /u/DerpinHerps |
 | Futurama.webm | /u/DerpinHerps |
-| NeoGeo.webm | /u/TareXmd | 
+| NeoGeo.webm | /u/TareXmd |
 | RickMorty.webm | /u/BeefyDragon |
 | Seinfeld.webm | /u/DerpinHerps |
 | TheCritic.webm | /u/TinyBruce |
 | office.webm | /u/DerpinHerps |
-
 
 # Known Issues
 
