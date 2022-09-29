@@ -42,6 +42,7 @@ Video file credits:
 | Filename | Author |
 | -------- | ------ |
 | BreakingBad.webm | /u/DerpinHerps |
+| BetterCallSaul.webm | /u/Minkarii |
 | CowboyBebop.webm | /u/MatPaget |
 | Frasier.webm | /u/DerpinHerps |
 | Futurama.webm | /u/DerpinHerps |
