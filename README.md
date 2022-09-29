@@ -42,14 +42,23 @@ Video file credits:
 | Filename | Author |
 | -------- | ------ |
 | BreakingBad.webm | /u/DerpinHerps |
+| BetterCallSaul.webm | /u/Minkarii |
 | CowboyBebop.webm | /u/MatPaget |
 | Frasier.webm | /u/DerpinHerps |
 | Futurama.webm | /u/DerpinHerps |
+| HandheldHistory.webm | /u/TareXmd |
 | NeoGeo.webm | /u/TareXmd |
+| office.webm | /u/DerpinHerps |
 | RickMorty.webm | /u/BeefyDragon |
 | Seinfeld.webm | /u/DerpinHerps |
 | TheCritic.webm | /u/TinyBruce |
-| office.webm | /u/DerpinHerps |
+
+The tools in this repo would be meaningless without all these talented video creators. Show them some love!
+
+| User | Donation link |
+| ---- | ------------- |
+| /u/DerpinHerps | Venmo:@HayPopp |
+| /u/TareXmd | [Paypal](https://paypal.me/tghazaly) |
 
 # Known Issues
 
