@@ -53,6 +53,13 @@ Video file credits:
 | Seinfeld.webm | /u/DerpinHerps |
 | TheCritic.webm | /u/TinyBruce |
 
+The tools in this repo would be meaningless without all these talented video creators. Show them some love!
+
+| User | Donation link |
+| ---- | ------------- |
+| /u/DerpinHerps | Venmo:@HayPopp |
+| /u/TareXmd | [Paypal](https://paypal.me/tghazaly) |
+
 # Known Issues
 
 Video files must not have spaces in the names. Prefer underscores or camelCase or PascalCase to spaces.
