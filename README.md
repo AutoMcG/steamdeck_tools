@@ -55,12 +55,15 @@ Video file credits:
 | Seinfeld.webm | /u/DerpinHerps |
 | TheCritic.webm | /u/TinyBruce |
 
-The tools in this repo would be meaningless without all these talented video creators. Show them some love!
+The tools in this repo would be meaningless without all these talented video creators. Show them some love by donating!
 
 | User | Donation link |
 | ---- | ------------- |
 | /u/DerpinHerps | Venmo:@HayPopp |
+| /u/Minkarii | [Mermaids](https://mermaidsuk.org.uk/donate/) |
 | /u/TareXmd | [Paypal](https://paypal.me/tghazaly) |
+| /u/TinyBruce | [Venmo](https://venmo.com/code?user_id=3273879153803264234&created=1664456024) (Justin-Perkins-113)|
+
 
 # Known Issues
 
