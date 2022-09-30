@@ -12,9 +12,9 @@ https://user-images.githubusercontent.com/31704955/192400391-af206162-b228-443e-
 
 # Vidswap
 
-Vidswap was created to replace the deck startup video file with a file of the user's choice.
+Vidswap was created to replace the deck startup video file with a file of the user's choice. 
 
-When ./vidswap/vidswap.sh is run, it reads all files within the 'vids' folder and displays a numbered list of the files.
+When ./vidswap/vidswap.sh is run, it reads all files within the 'vids' folder and displays a numbered list of the files. To add new files to the list, simply drop a <2 MB .webm file into the /vidswap/vids folder and the script should take care of the rest.
 
 The user then enters the number corresponding to the video they want to put into place.
 
@@ -31,6 +31,8 @@ If you'd like to set the next video randomly, execute randomizer.desktop (or run
 If you'd like to set a new random video for every boot, execute random_every_boot.desktop (or run ./vidswap/random_service_install.sh).
 
 To stop the random every boot, execute uninstall_every_boot.desktop (or run ./vidswap/random_service_uninstall.sh).
+
+### Randomizer invokes Vidswap. This means any webms added to /vidswap/vids will be part of the random rotation.
 
 # Credits
 
