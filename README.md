@@ -53,12 +53,15 @@ Video file credits:
 | office.webm | /u/DerpinHerps |
 | RickMorty.webm | /u/BeefyDragon |
 | Seinfeld.webm | /u/DerpinHerps |
+| StarWars.webm | /u/BetterCallSal |
 | TheCritic.webm | /u/TinyBruce |
+| WarGames.webm | /u/BetterCallSal |
 
 The tools in this repo would be meaningless without all these talented video creators. Show them some love by donating!
 
 | User | Donation link |
 | ---- | ------------- |
+| /u/BetterCallSal | [Streamlabs](https://streamlabs.com/thesilverhairedgamer/tip) |
 | /u/DerpinHerps | Venmo:@HayPopp |
 | /u/Minkarii | [Mermaids](https://mermaidsuk.org.uk/donate/) |
 | /u/TareXmd | [Paypal](https://paypal.me/tghazaly) |
