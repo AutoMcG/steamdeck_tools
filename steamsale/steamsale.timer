@@ -1,0 +1,8 @@
+[Unit]
+Description=Time to buy games you'll never play (the timer)
+
+[Timer]
+OnCalendar=2022-10-1 15:20:00
+
+[Install]
+WantedBy=timers.target

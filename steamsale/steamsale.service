@@ -1,0 +1,10 @@
+[Unit]
+Description=Time to buy games you'll never play (the service)
+
+[Service]
+Type=simple
+WorkingDirectory=/home/deck/repos/steamdeck_tools/steamsale/
+ExecStart=/home/deck/repos/steamdeck_tools/steamsale/steamsale.sh
+
+[Install]
+WantedBy=default.target
