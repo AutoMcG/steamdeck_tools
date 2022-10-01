@@ -64,6 +64,7 @@ The tools in this repo would be meaningless without all these talented video cre
 | /u/Minkarii | [Mermaids](https://mermaidsuk.org.uk/donate/) |
 | /u/TareXmd | [Paypal](https://paypal.me/tghazaly) |
 | /u/TinyBruce | [Venmo](https://venmo.com/code?user_id=3273879153803264234&created=1664456024) (Justin-Perkins-113)|
+| /u/trentwebr | [Paypal](https://www.paypal.com/donate/?business=7RMYLBR9YG22N) |
 
 
 # Known Issues
