@@ -2,7 +2,10 @@
 Description=Time to buy games you'll never play (the timer)
 
 [Timer]
-OnCalendar=2022-10-1 15:20:00
+OnCalendar=2022-11-22..29 01:00:00
+OnCalendar=2022-12-22..31 01:00:00
+OnCalendar=2023-01-1..5 01:00:00
+OnCalendar=2023-03-16..23 01:00:00
 
 [Install]
 WantedBy=timers.target

@@ -1,8 +1,8 @@
 [Unit]
-Description=Gaben is a Shiny Golden God
+Description=Sets a random startup video on startup
 
 [Service]
-Type=simple
+Type=oneshot
 WorkingDirectory=/home/deck/repos/steamdeck_tools/steamsale
 ExecStart=/bin/bash /home/deck/repos/steamdeck_tools/steamsale/steamsale.sh
 
