@@ -55,6 +55,7 @@ Video file credits:
 | RickMorty.webm | /u/BeefyDragon |
 | Seinfeld.webm | /u/DerpinHerps |
 | TheCritic.webm | /u/TinyBruce |
+| UncleGrim_TonightsTheNight.webm | [Uncle Grim](https://www.youtube.com/c/ReclusiarchGrimaldus) |
 
 The tools in this repo would be meaningless without all these talented video creators. Show them some love by donating!
 
