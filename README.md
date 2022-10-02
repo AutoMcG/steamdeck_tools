@@ -63,6 +63,7 @@ The tools in this repo would be meaningless without all these talented video cre
 | User | Donation link |
 | ---- | ------------- |
 | /u/BetterCallSal | [Streamlabs](https://streamlabs.com/thesilverhairedgamer/tip) |
+| /u/BeefyDragon | [Paypal](https://www.paypal.me/Shaktimus) |
 | /u/DerpinHerps | Venmo:@HayPopp |
 | /u/Minkarii | [Mermaids](https://mermaidsuk.org.uk/donate/) |
 | /u/TareXmd | [Paypal](https://paypal.me/tghazaly) |
