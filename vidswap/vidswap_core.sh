@@ -51,6 +51,7 @@ prompt_continue () {
 }
 
 print_actions () {
+    echo ""
     echo "Resizing $filename_picked to $vid_size and copying to $vid_path"
     echo "Changing content in $css_path and resizing to $css_size"
     echo "Files will be copied to /tmp/ and modified there"
@@ -60,6 +61,7 @@ print_actions () {
 # $1 is the path to scan - must end in /
 process_input_files () {
     input_vid_dir=${1:-'./vids/'}
+    echo ""
     echo "Processing files from $input_vid_dir"
     shopt -s nullglob
     new_vid_files=($input_vid_dir*)
@@ -157,3 +159,16 @@ check_checksums () {
     echo "Js orig checksum:     $js_checksum"
     echo "Js current checksum:  $(md5sum $js_path | cut -f 1 -d ' ')"
 }
+
+backup_originals () {
+    mkdir -p "./backup"
+    # make checksum part of the file name so we don't save duplicates
+    bak_video_checksum="$(md5sum $vid_path | cut -f 1 -d ' ')"
+    bak_css_checksum="$(md5sum $css_path | cut -f 1 -d ' ')"
+    bak_js_checksum="$(md5sum $js_path | cut -f 1 -d ' ')"
+    cp $vid_path "./backup/${bak_video_checksum}_$( basename $vid_path)"
+    cp $css_path "./backup/${bak_css_checksum}_$( basename $css_path)"
+    cp $js_path "./backup/${bak_js_checksum}_$( basename $js_path)"
+}
+
+
