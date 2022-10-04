@@ -63,13 +63,13 @@ The tools in this repo would be meaningless without all these talented video cre
 
 | User | Donation link |
 | ---- | ------------- |
-| /u/BetterCallSal | [Streamlabs](https://streamlabs.com/thesilverhairedgamer/tip) |
-| /u/BeefyDragon | [Paypal](https://www.paypal.me/Shaktimus) |
-| /u/DerpinHerps | Venmo:@HayPopp |
-| /u/Minkarii | [Mermaids](https://mermaidsuk.org.uk/donate/) |
-| /u/TareXmd | [Paypal](https://paypal.me/tghazaly) |
-| /u/TinyBruce | [Venmo](https://venmo.com/code?user_id=3273879153803264234&created=1664456024) (Justin-Perkins-113)|
-| /u/trentwebr | [Paypal](https://www.paypal.com/donate/?business=7RMYLBR9YG22N) |
+| [/u/BetterCallSal](https://www.reddit.com/user/BetterCallSal) | [Streamlabs](https://streamlabs.com/thesilverhairedgamer/tip) |
+| [/u/BeefyDragon](https://www.reddit.com/user/BeefyDragon) | [Paypal](https://www.paypal.me/Shaktimus) |
+| [/u/DerpinHerps](https://www.reddit.com/user/DerpinHerps) | Venmo:@HayPopp |
+| [/u/Minkarii](https://www.reddit.com/user/Minkarii) | [Mermaids](https://mermaidsuk.org.uk/donate/) |
+| [/u/TareXmd](https://www.reddit.com/user/TareXmd) | [Paypal](https://paypal.me/tghazaly) |
+| [/u/TinyBruce](https://www.reddit.com/user/TinyBruce) | [Venmo](https://venmo.com/code?user_id=3273879153803264234&created=1664456024) (Justin-Perkins-113)|
+| [/u/trentwebr](https://www.reddit.com/user/trentwebr) | [Paypal](https://www.paypal.com/donate/?business=7RMYLBR9YG22N) |
 
 
 # Known Issues

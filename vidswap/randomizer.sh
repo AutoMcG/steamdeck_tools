@@ -1,8 +1,8 @@
 #!/bin/bash
 
-new_vid_dir=./vids/
-shopt -s nullglob
-new_vid_files=($new_vid_dir*)
+source vidswap_core.sh
+
+process_input_files
 count=${#new_vid_files[@]}
 
 random_choice=$(( 1 + $RANDOM % $count ))
