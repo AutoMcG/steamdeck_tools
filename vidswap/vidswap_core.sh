@@ -20,8 +20,8 @@ js_size=0
 
 # Values for deubbing only as of 10/3/2022
 vid_check_size=1840847
-css_check_size=38492
-js_check_size=288889
+css_check_size=38631
+js_check_size=289786
 
 # Checksums as of 10/3/2022
 vid_checksum="4ee82f478313cf74010fc22501b40729"
