@@ -25,8 +25,8 @@ js_check_size=288889
 
 # Checksums as of 10/3/2022
 vid_checksum="4ee82f478313cf74010fc22501b40729"
-css_checksum="1540f8c3a3944590c5892b0947ce43e6"
-js_checksum="ee49f2778c8af821590ca6899260cccf"
+css_checksum="b3565c92eacbc7d2afe3cc070550d0a4"
+js_checksum="604ef2fe25ed361688f089d8769e6c3a"
 
 # Display scaring warning
 print_scary () {
