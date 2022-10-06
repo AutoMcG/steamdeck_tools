@@ -31,7 +31,7 @@ else
 fi
 
 create_override
-get_sizes
+#get_sizes
 print_actions
 #tmp only required for css and js edits with new overrides dir
 #css full screen edit no longer needed
