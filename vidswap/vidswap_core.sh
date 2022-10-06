@@ -5,6 +5,7 @@
 RED='\033[0;31m'
 NC='\033[0m'
 
+vid_override_path="/home/deck/.steam/root/config/uioverrides/movies/"
 vid_path="/home/deck/.local/share/Steam/steamui/movies/deck_startup.webm"
 css_path="/home/deck/.local/share/Steam/steamui/css/library.css"
 js_path="/home/deck/.local/share/Steam/steamui/library.js"
@@ -28,6 +29,12 @@ vid_checksum="4ee82f478313cf74010fc22501b40729"
 css_checksum="b3565c92eacbc7d2afe3cc070550d0a4"
 js_checksum="604ef2fe25ed361688f089d8769e6c3a"
 
+# Create vid override dir
+# This be idempotent
+create_override () {
+    mkdir -p $vid_override_path
+}
+
 # Display scaring warning
 print_scary () {
     echo "======================================="
@@ -48,12 +55,13 @@ prompt_continue () {
         echo "Exiting..."
         exit 1
     fi
+    echo ""
 }
 
 print_actions () {
-    echo "Resizing $filename_picked to $vid_size and copying to $vid_path"
-    echo "Changing content in $css_path and resizing to $css_size"
-    echo "Files will be copied to /tmp/ and modified there"
+    echo "Creating symlink from $filename_picked to $vid_override_path/deck_startup.webm"
+    #echo "Changing content in $css_path and resizing to $css_size"
+    #echo "Files will be copied to /tmp/ and modified there"
 }
 
 # Populate video_array with files from arg or default
@@ -66,6 +74,14 @@ process_input_files () {
     counter=1
     for i in "${new_vid_files[@]}" ; do
         video_array[$counter]=$i
+        let counter++
+    done
+}
+
+# Print list and index of all files available in source
+print_input_files () {
+    counter=1
+    for i in "${new_vid_files[@]}" ; do
         echo "$counter. $i"
         let counter++
     done
@@ -94,13 +110,13 @@ prompt_for_vid_pick () {
 # $1 is the number of file to pick from menu
 select_vid_file () {
     file_to_pick=$1
-    filename_picked="${video_array[$file_to_pick]}"
+    filename_picked="$(realpath ${video_array[$file_to_pick]})"
     echo "$file_to_pick selected which corresponds to $filename_picked"
 }
 
 # Get and store sizes for original video, css, and js files
 get_sizes () {
-    vid_size=$(stat --printf="%s" $vid_path)
+    #vid_size=$(stat --printf="%s" $vid_path)
     css_size=$(stat --printf="%s" $css_path)
     js_size=$(stat --printf="%s" $js_path)
 }
@@ -115,26 +131,27 @@ css_edit () {
 # Copies vid, css, and js files to tmp
 # Needs: filename_picked
 copy_to_tmp() {
-    tmp_vid="/tmp/$(basename $filename_picked)"
+    #tmp_vid="/tmp/$(basename $filename_picked)"
     tmp_css="/tmp/$(basename $css_path)"
     tmp_js="/tmp/$(basename $js_path)"
-    cp $filename_picked $tmp_vid
+    #cp $filename_picked $tmp_vid
     cp $css_path $tmp_css
     cp $js_path $tmp_js
 }
 
 # Truncates vid, css, and js files in tmp
 truncate_tmp_files () {
-    truncate -s $vid_size $tmp_vid
+    #truncate -s $vid_size $tmp_vid
     truncate -s $css_size $tmp_css
     truncate -s $js_size $tmp_js
 }
 
-# Installs (overwrites original) vid, css, and js files from tmp
+# Creates video symlink
 install_files () {
-    cp $tmp_vid $vid_path
-    cp $tmp_css $css_path
-    cp $tmp_js $js_path
+    #cp $tmp_vid $vid_path
+    ln -sf $filename_picked "$vid_override_path/deck_startup.webm"
+    #cp $tmp_css $css_path
+    #cp $tmp_js $js_path
 }
 
 # Useful for debugging
