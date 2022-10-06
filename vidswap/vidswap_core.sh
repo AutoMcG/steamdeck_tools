@@ -171,4 +171,13 @@ backup_originals () {
     cp $js_path "./backup/${bak_js_checksum}_$( basename $js_path)"
 }
 
+restore_choice () {
+    #restore css choice
+    CSS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.css to restore"`
+    JS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.js to restore"`
+
+    echo "Picked CSS: $CSS_RESTORE"
+    echo "Picked JS: $JS_RESTORE"
+}
+
 
