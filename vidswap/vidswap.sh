@@ -23,17 +23,21 @@ then
     print_scary
     prompt_continue
     process_input_files
+    print_input_files
     prompt_for_vid_pick
 else
     process_input_files
     select_vid_file $file_to_pick
 fi
 
-get_sizes
+create_override
+#get_sizes
 print_actions
-copy_to_tmp
-css_edit
-truncate_tmp_files
+#tmp only required for css and js edits with new overrides dir
+#css full screen edit no longer needed
+#copy_to_tmp
+#css_edit
+#truncate_tmp_files
 install_files
 
 if [ "$print_debug" = true ]
