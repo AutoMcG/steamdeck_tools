@@ -66,13 +66,14 @@ print_actions () {
 }
 
 # Populate video_array with files from arg or default
-# $1 is the path to scan - must end in /
+# $1 is the path to scan
 process_input_files () {
-    input_vid_dir=${1:-'./vids/'}
+    input_vid_dir=${1:-'./vids'}
     echo ""
     echo "Processing files from $input_vid_dir"
     shopt -s nullglob
-    new_vid_files=($input_vid_dir*)
+    shopt -s globstar
+    new_vid_files=($input_vid_dir/**/*.webm)
     counter=1
     for i in "${new_vid_files[@]}" ; do
         video_array[$counter]=$i
