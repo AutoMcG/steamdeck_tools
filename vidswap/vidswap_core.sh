@@ -4,6 +4,7 @@
 
 RED='\033[0;31m'
 NC='\033[0m'
+OS_VERSION="20221005.1_3.3.2"
 
 vid_override_path="/home/deck/.steam/root/config/uioverrides/movies/"
 vid_path="/home/deck/.local/share/Steam/steamui/movies/deck_startup.webm"
@@ -68,6 +69,7 @@ print_actions () {
 # $1 is the path to scan - must end in /
 process_input_files () {
     input_vid_dir=${1:-'./vids/'}
+    echo ""
     echo "Processing files from $input_vid_dir"
     shopt -s nullglob
     new_vid_files=($input_vid_dir*)
@@ -163,6 +165,7 @@ check_sizes () {
 
 # Useful for debugging
 check_checksums () {
+    echo "orig values for version $OS_VERSION"
     echo "Vid orig checksum:    $vid_checksum"
     echo "Vid current checksum: $(md5sum $vid_path | cut -f 1 -d ' ')"
     echo "Css orig checksum:    $css_checksum"
@@ -170,3 +173,55 @@ check_checksums () {
     echo "Js orig checksum:     $js_checksum"
     echo "Js current checksum:  $(md5sum $js_path | cut -f 1 -d ' ')"
 }
+
+backup_originals () {
+    mkdir -p "./backup"
+    # make checksum part of the file name so we don't save duplicates
+    bak_video_checksum="$(md5sum $vid_path | cut -f 1 -d ' ')"
+    bak_css_checksum="$(md5sum $css_path | cut -f 1 -d ' ')"
+    bak_js_checksum="$(md5sum $js_path | cut -f 1 -d ' ')"
+    cp $vid_path "./backup/${bak_video_checksum}_$( basename $vid_path)"
+    cp $css_path "./backup/${bak_css_checksum}_$( basename $css_path)"
+    cp $js_path "./backup/${bak_js_checksum}_$( basename $js_path)"
+}
+
+restore_choice () {
+    #restore css choice
+    #code from https://help.gnome.org/users/zenity/stable/file-selection.html.en
+    CSS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.css to restore"`
+    case $? in
+         0)
+                echo "Picked CSS: $CSS_RESTORE";;
+         1)
+                echo "No file selected.";;
+        -1)
+                echo "An unexpected error has occurred."
+                exit 8;;
+    esac
+
+
+    JS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.js to restore"`
+    case $? in
+         0)
+                echo "Picked JS: $JS_RESTORE";;
+         1)
+                echo "No file selected.";;
+        -1)
+                echo "An unexpected error has occurred."
+                exit 8;;
+    esac
+}
+
+execute_restore () {
+    cp $CSS_RESTORE $css_path
+    cp $JS_RESTORE $js_path
+    echo "Files restored!"
+}
+
+confirm_restore () {
+    echo "Continuing with restore will copy $CSS_RESTORE to $css_path"
+    echo "Continuing with restore will copy $JS_RESTORE to $js_path"
+    prompt_continue
+}
+
+
