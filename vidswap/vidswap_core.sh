@@ -131,24 +131,20 @@ css_edit () {
 # Copies vid, css, and js files to tmp
 # Needs: filename_picked
 copy_to_tmp() {
-    #tmp_vid="/tmp/$(basename $filename_picked)"
     tmp_css="/tmp/$(basename $css_path)"
     tmp_js="/tmp/$(basename $js_path)"
-    #cp $filename_picked $tmp_vid
     cp $css_path $tmp_css
     cp $js_path $tmp_js
 }
 
 # Truncates vid, css, and js files in tmp
 truncate_tmp_files () {
-    #truncate -s $vid_size $tmp_vid
     truncate -s $css_size $tmp_css
     truncate -s $js_size $tmp_js
 }
 
 # Creates video symlink
 install_files () {
-    #cp $tmp_vid $vid_path
     ln -sf $filename_picked "$vid_override_path/deck_startup.webm"
     #cp $tmp_css $css_path
     #cp $tmp_js $js_path
