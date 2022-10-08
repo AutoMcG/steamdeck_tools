@@ -14,13 +14,15 @@ https://user-images.githubusercontent.com/31704955/192400391-af206162-b228-443e-
 
 Vidswap was created to replace the deck startup video file with a file of the user's choice. 
 
-When ./vidswap/vidswap.sh is run, it reads all files within the 'vids' folder and displays a numbered list of the files. To add new files to the list, simply drop a <2 MB .webm file into the /vidswap/vids folder and the script should take care of the rest.
+When ./vidswap/vidswap.sh is run, it reads all files within the 'vids' folder and displays a numbered list of the files. To add new files to the list, simply drop a .webm file into the /vidswap/vids folder and the script should take care of the rest. 
 
 The user then enters the number corresponding to the video they want to put into place.
 
 The selected video file should then play every time the steam deck enters gaming mode.
 
 To run the script, you can either invoke it in terminal or double-click the vidswap.desktop file when in desktop mode.
+
+This has been updated to use the new `/home/deck/.steam/root/config/uioverrides/movies/` location and no longer changes or truncates any other files. 
 
 # Randomizer
 
