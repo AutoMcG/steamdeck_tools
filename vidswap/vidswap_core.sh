@@ -4,6 +4,7 @@
 
 RED='\033[0;31m'
 NC='\033[0m'
+OS_VERSION="20221005.1_3.3.2"
 
 vid_override_path="/home/deck/.steam/root/config/uioverrides/movies/"
 vid_path="/home/deck/.local/share/Steam/steamui/movies/deck_startup.webm"
@@ -164,6 +165,7 @@ check_sizes () {
 
 # Useful for debugging
 check_checksums () {
+    echo "orig values for version $OS_VERSION"
     echo "Vid orig checksum:    $vid_checksum"
     echo "Vid current checksum: $(md5sum $vid_path | cut -f 1 -d ' ')"
     echo "Css orig checksum:    $css_checksum"
@@ -185,15 +187,41 @@ backup_originals () {
 
 restore_choice () {
     #restore css choice
+    #code from https://help.gnome.org/users/zenity/stable/file-selection.html.en
     CSS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.css to restore"`
-    echo "Picked CSS: $CSS_RESTORE"
+    case $? in
+         0)
+                echo "Picked CSS: $CSS_RESTORE";;
+         1)
+                echo "No file selected.";;
+        -1)
+                echo "An unexpected error has occurred."
+                exit 8;;
+    esac
+
 
     JS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.js to restore"`
-    echo "Picked JS: $JS_RESTORE"
+    case $? in
+         0)
+                echo "Picked JS: $JS_RESTORE";;
+         1)
+                echo "No file selected.";;
+        -1)
+                echo "An unexpected error has occurred."
+                exit 8;;
+    esac
+}
 
+execute_restore () {
     cp $CSS_RESTORE $css_path
     cp $JS_RESTORE $js_path
     echo "Files restored!"
+}
+
+confirm_restore () {
+    echo "Continuing with restore will copy $CSS_RESTORE to $css_path"
+    echo "Continuing with restore will copy $JS_RESTORE to $js_path"
+    prompt_continue
 }
 
 
