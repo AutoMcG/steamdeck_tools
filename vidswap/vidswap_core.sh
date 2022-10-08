@@ -19,14 +19,14 @@ vid_size=0
 css_size=0
 js_size=0
 
-# Values for deubbing only as of 10/3/2022
+# Values for deubbing only as of 10/7/2022
 vid_check_size=1840847
 css_check_size=38631
 js_check_size=289786
 
-# Checksums as of 10/3/2022
+# Checksums as of 10/7/2022
 vid_checksum="4ee82f478313cf74010fc22501b40729"
-css_checksum="b3565c92eacbc7d2afe3cc070550d0a4"
+css_checksum="918832d0e497411a3e7a121838bed4e6"
 js_checksum="604ef2fe25ed361688f089d8769e6c3a"
 
 # Create vid override dir
@@ -116,7 +116,7 @@ select_vid_file () {
 
 # Get and store sizes for original video, css, and js files
 get_sizes () {
-    #vid_size=$(stat --printf="%s" $vid_path)
+    vid_size=$(stat --printf="%s" $vid_path)
     css_size=$(stat --printf="%s" $css_path)
     js_size=$(stat --printf="%s" $js_path)
 }
