@@ -36,6 +36,22 @@ To stop the random every boot, execute uninstall_every_boot.desktop (or run ./vi
 
 ### Randomizer invokes Vidswap. This means any webms added to /vidswap/vids will be part of the random rotation.
 
+# ChangeDuration
+
+The Steam Deck will play boot videos up to 10 seconds in duration by default. ChangeDuration allows you to set any reasonable duration you desire in 10 second increments. This is done by modifying library.js (and the same truncate pattern we're all used to). 
+
+If the duration set in library.js is longer than the boot video, the Steam Deck will enter into gaming mode as soon as the video is done playing (and the Deck is done booting). 
+
+To change the duration, execute change_duration.desktop (or run ./vidswap/change_duration.sh). 
+
+# Restore 
+
+Restore allows the user to replace library.css and library.js files with versions the user selects. Before any changes are made to either of these files, a copy is saved in ./vidswap/backup with the md5 checksum as part of the file name. Additionally, static versions of the files for known releases are stored in directories that follow the convention "BUILD_ID"_"VERSION_ID". 
+
+To see what build and version your Steam Deck is running, execute `cat /etc/*-release` in terminal. 
+
+To launch Restore, execute restore.desktop (or run ./vidswap/restore.sh).
+
 # Credits
 
 HUGE credit to /u/DerpinHerps for their amazing startup videos and work pioneering the process.
