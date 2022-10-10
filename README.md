@@ -42,7 +42,7 @@ The Steam Deck will play boot videos up to 10 seconds in duration by default. Ch
 
 If the duration set in library.js is longer than the boot video, the Steam Deck will enter into gaming mode as soon as the video is done playing (and the Deck is done booting). 
 
-To change the duration, execute change_duration.desktop (or run ./vidswap/change_duration.sh). 
+To change the duration, execute change_duration.desktop (or run ./vidswap/change_duration.sh). Once the duration is set it should stay set until the next SteamOS update.
 
 # Restore 
 
