@@ -71,8 +71,3 @@ The tools in this repo would be meaningless without all these talented video cre
 | [/u/TareXmd](https://www.reddit.com/user/TareXmd) | [Paypal](https://paypal.me/tghazaly) |
 | [/u/TinyBruce](https://www.reddit.com/user/TinyBruce) | [Venmo](https://venmo.com/code?user_id=3273879153803264234&created=1664456024) (Justin-Perkins-113)|
 | [/u/trentwebr](https://www.reddit.com/user/trentwebr) | [Paypal](https://www.paypal.com/donate/?business=7RMYLBR9YG22N) |
-
-
-# Known Issues
-
-Video files must not have spaces in the names. Prefer underscores or camelCase or PascalCase to spaces.
