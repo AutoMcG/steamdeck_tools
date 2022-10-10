@@ -6,3 +6,4 @@ restore_choice
 confirm_restore
 execute_restore
 check_checksums
+check_sizes
