@@ -81,7 +81,6 @@ prompt_for_vid_pick () {
 prompt_for_duration () {
     echo ""
     echo "Enter duration (in seconds) you wish to allow: "
-    echo "(or enter nothing to use 30 second default)"
     read config_duration
     if [[ -z $config_duration ]]; then
         echo "Empty input received. Exiting..."
@@ -151,8 +150,8 @@ css_edit () {
     sed -i -e"s/$old_video_setting/$new_video_setting/" $tmp_css
 }
 
-# Applies length edit to /tmp/library.js
-# $1 is length to apply
+# Applies duration edit to /tmp/library.js
+# $1 is duration to apply
 js_edit () {
     input_duration=${1:-3e4}
     old_duration_setting="\(s,\)[1-9]e[1-9]\(,\[\]\)"
