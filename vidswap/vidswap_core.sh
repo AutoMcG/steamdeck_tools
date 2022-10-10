@@ -59,6 +59,45 @@ prompt_continue () {
     echo ""
 }
 
+# Prompt the user for a number from the vid file menu
+# Exit with code if invalid choice
+prompt_for_vid_pick () {
+    echo ""
+    echo "Enter number of video file you wish to install:"
+    read choice
+    if [[ -z $choice ]]; then
+        echo "Empty input received. Exiting..."
+        exit 5
+    elif [[ $choice =~ [^0-9]+ ]]; then
+        echo "Entry was not a number!"
+        exit 6
+    elif (($choice < 1 || $choice > ${#video_array[@]})); then
+        echo "Choice was not in range."
+        exit 7
+    fi
+    select_vid_file $choice
+}
+
+prompt_for_duration () {
+    echo ""
+    echo "Enter duration (in seconds) you wish to allow: "
+    echo "(or enter nothing to use 30 second default)"
+    read config_duration
+    if [[ -z $config_duration ]]; then
+        echo "Empty input received. Exiting..."
+        exit 10
+    elif [[ $config_duration =~ [^0-9]+ ]]; then
+        echo "Entry was not a number!"
+        exit 11
+    elif (( config_duration % 10 != 0 )); then
+        echo "This script only supports lengths divisible by 10."
+        exit 12
+    fi
+    in_ms=`printf "%1.0e" $((config_duration*1000))`
+    converted_duration=`echo ${in_ms/\+0/}`
+    js_edit $converted_duration
+}
+
 print_actions () {
     echo "Creating symlink from $filename_picked to $vid_override_path/deck_startup.webm"
     #echo "Changing content in $css_path and resizing to $css_size"
@@ -90,25 +129,6 @@ print_input_files () {
     done
 }
 
-# Prompt the user for a number from the vid file menu
-# Exit with code if invalid choice
-prompt_for_vid_pick () {
-    echo ""
-    echo "Enter number of video file you wish to install:"
-    read choice
-    if [[ -z $choice ]]; then
-        echo "Empty input received. Exiting..."
-        exit 5
-    elif [[ $choice =~ [^0-9]+ ]]; then
-        echo "Entry was not a number!"
-        exit 6
-    elif (($choice < 1 || $choice > ${#video_array[@]})); then
-        echo "Choice was not in range."
-        exit 7
-    fi
-    select_vid_file $choice
-}
-
 # Sets internal variables for which file to use
 # $1 is the number of file to pick from menu
 select_vid_file () {
@@ -131,6 +151,15 @@ css_edit () {
     sed -i -e"s/$old_video_setting/$new_video_setting/" $tmp_css
 }
 
+# Applies length edit to /tmp/library.js
+# $1 is length to apply
+js_edit () {
+    input_duration=${1:-3e4}
+    old_duration_setting="\(s,\)[1-9]e[1-9]\(,\[\]\)"
+    new_duration_setting="\1$input_duration\2"
+    sed -i -e"s/$old_duration_setting/$new_duration_setting/" $tmp_js
+}
+
 # Copies vid, css, and js files to tmp
 # Needs: filename_picked
 copy_to_tmp() {
@@ -150,7 +179,10 @@ truncate_tmp_files () {
 install_files () {
     ln -sf $filename_picked "$vid_override_path/deck_startup.webm"
     #cp $tmp_css $css_path
-    #cp $tmp_js $js_path
+}
+
+install_js () {
+    cp $tmp_js $js_path
 }
 
 # Useful for debugging
