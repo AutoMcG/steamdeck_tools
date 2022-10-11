@@ -52,6 +52,10 @@ To see what build and version your Steam Deck is running, execute `cat /etc/*-re
 
 To launch Restore, execute restore.desktop (or run ./vidswap/restore.sh).
 
+# Known Issues
+
+Video files must not have spaces in the names. Prefer underscores or camelCase or PascalCase to spaces.
+
 # Credits
 
 HUGE credit to /u/DerpinHerps for their amazing startup videos and work pioneering the process.
