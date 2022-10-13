@@ -32,8 +32,48 @@ js_checksum="604ef2fe25ed361688f089d8769e6c3a"
 
 # Create vid override dir
 # This be idempotent
+# Reads $vid_override_path
 create_override () {
     mkdir -p $vid_override_path
+}
+
+#Create playlist file using filenames
+#$1 is directory to look in (defaults to "./vids")
+create_playlist () {
+    process_input_files $1
+    printf "%s\n" "${new_vid_files[@]}" >> "./bootvid_playlist.txt"
+}
+
+#Read playlist file into $active_playlist
+#$1 is filepath to playlist file (./bootvid_playlist.txt by default)
+#Sets $playlist_path
+read_playlist () {
+    playlist_path=${1:-'./bootvid_playlist.txt'}
+    readarray -t active_playlist < $playlist_path
+}
+
+#shuffle $active_playlist and rewrite playlist to $1 (./bootvid_playlist by default)
+#Sets $playlist_path
+#Sets $active_playlist
+shuffle_playlist () {
+    playlist_path=${1:-'./bootvid_playlist.txt'}
+    active_playlist=( $( shuf -e "${active_playlist[@]}" ) )
+    printf "%s\n" "${active_playlist[@]}" > "$playlist_path"
+}
+
+# https://stackoverflow.com/questions/339483/how-can-i-remove-the-first-line-of-a-text-file-using-bash-sed-script
+# https://stackoverflow.com/questions/2439579/how-to-get-the-first-line-of-a-file-in-a-bash-script
+#Reads $playlist_path
+#Sets $playlist_choice
+#Sets $filename_picked
+#Changes $playlist_path file
+pop_playlist_line () {
+    read -r playlist_choice<$playlist_path
+    tail -n +2 "$playlist_path" > "$playlist_path.tmp" && mv "$playlist_path.tmp" "$playlist_path"
+    echo "Choice: $playlist_choice"
+    echo $playlist_choice >> $playlist_path
+    filename_picked="$( realpath $playlist_choice )"
+    install_files
 }
 
 # Display scaring warning
@@ -174,7 +214,7 @@ truncate_tmp_files () {
     truncate -s $js_size $tmp_js
 }
 
-# Creates video symlink
+# Creates video symlink from $filename_picked
 install_files () {
     ln -sf $filename_picked "$vid_override_path/deck_startup.webm"
     #cp $tmp_css $css_path
