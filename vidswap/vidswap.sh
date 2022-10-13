@@ -24,7 +24,12 @@ then
     prompt_for_vid_pick
 elif [ $file_to_pick = "p" ]
 then
-    read_playlist
+    if [ -f "./bootvid_playlist.txt" ]
+    then
+        read_playlist
+    else
+        create_playlist
+    fi
     pop_playlist_line
     install_files
 else
