@@ -16,15 +16,18 @@ while getopts ":n:d" option; do
     esac
 done
 
-# Maintain backwards compatability/same user experience as established
-# (even though it means calling process_input_files in two places)
-if [[ $file_to_pick -eq 0 ]]
+process_input_files
+
+if [ $file_to_pick = "0" ]
 then
-    process_input_files
     print_input_files
     prompt_for_vid_pick
+elif [ $file_to_pick = "p" ]
+then
+    read_playlist
+    pop_playlist_line
+    install_files
 else
-    process_input_files
     select_vid_file $file_to_pick
 fi
 

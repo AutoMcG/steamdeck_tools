@@ -62,18 +62,15 @@ shuffle_playlist () {
 }
 
 # https://stackoverflow.com/questions/339483/how-can-i-remove-the-first-line-of-a-text-file-using-bash-sed-script
-# https://stackoverflow.com/questions/2439579/how-to-get-the-first-line-of-a-file-in-a-bash-script
-#Reads $playlist_path
-#Sets $playlist_choice
 #Sets $filename_picked
 #Changes $playlist_path file
 pop_playlist_line () {
-    read -r playlist_choice<$playlist_path
+    read_playlist
     tail -n +2 "$playlist_path" > "$playlist_path.tmp" && mv "$playlist_path.tmp" "$playlist_path"
-    echo "Choice: $playlist_choice"
-    echo $playlist_choice >> $playlist_path
+    playlist_choice=${active_playlist[0]}
+    echo "Choice: ${playlist_choice[0]}"
+    echo ${playlist_choice[0]} >> $playlist_path
     filename_picked="$( realpath $playlist_choice )"
-    install_files
 }
 
 # Display scaring warning
