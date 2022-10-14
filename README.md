@@ -26,11 +26,11 @@ This has been updated to use the new `/home/deck/.steam/root/config/uioverrides/
 
 # Randomizer
 
-Randomizer builds on Vidswap and provides two features: individual random set and on-boot randomization. It also now randomizes every time desktop mode is entered.
+Randomizer builds on Vidswap and provides two features: individual random set and on-boot/mode switch randomization.
 
 If you'd like to set the next video randomly, execute randomizer.desktop (or run ./vidswap/randomzier.sh).
 
-If you'd like to set a new random video for every boot, execute random_every_boot.desktop (or run ./vidswap/random_service_install.sh).
+If you'd like to set a new random video for every boot and gaming mode -> desktop mode switch, execute random_every_boot.desktop (or run ./vidswap/random_service_install.sh).
 
 To stop the random every boot, execute uninstall_every_boot.desktop (or run ./vidswap/random_service_uninstall.sh).
 
