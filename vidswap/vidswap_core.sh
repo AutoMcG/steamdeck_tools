@@ -12,6 +12,7 @@ css_path="/home/deck/.local/share/Steam/steamui/css/library.css"
 js_path="/home/deck/.local/share/Steam/steamui/library.js"
 
 declare -A video_array
+declare -A dedupe_array
 
 vid_size=0
 css_size=0
@@ -62,6 +63,7 @@ prompt_continue () {
 prompt_for_vid_pick () {
     echo ""
     echo "Enter number of video file you wish to install:"
+    echo "(Enter without choice cancels)"
     read choice
     if [[ -z $choice ]]; then
         echo "Empty input received. Exiting..."
@@ -95,10 +97,8 @@ prompt_for_duration () {
     js_edit $converted_duration
 }
 
-print_actions () {
+print_vid_actions () {
     echo "Creating symlink from $filename_picked to $vid_override_path/deck_startup.webm"
-    #echo "Changing content in $css_path and resizing to $css_size"
-    #echo "Files will be copied to /tmp/ and modified there"
 }
 
 # Populate video_array with files from arg or default
@@ -173,7 +173,7 @@ truncate_tmp_files () {
 }
 
 # Creates video symlink from $filename_picked
-install_files () {
+install_vid () {
     ln -sf $filename_picked "$vid_override_path/deck_startup.webm"
     #cp $tmp_css $css_path
 }
@@ -267,7 +267,6 @@ create_playlist () {
 #$1 is filepath to playlist file (./bootvid_playlist.txt by default)
 #Sets $playlist_path
 read_playlist () {
-    echo "playlist to read: $1"
     playlist_path=${1:-'./bootvid_playlist.txt'}
     readarray -t active_playlist < $playlist_path
 }
@@ -276,7 +275,6 @@ read_playlist () {
 #Sets $playlist_path
 #Sets $active_playlist
 shuffle_playlist () {
-    echo "playlist to shuffle: $1"
     read_playlist $1
     active_playlist=( $( shuf -e "${active_playlist[@]}" ) )
     printf "%s\n" "${active_playlist[@]}" > "$playlist_path"
