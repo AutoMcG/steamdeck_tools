@@ -26,7 +26,7 @@ This has been updated to use the new `/home/deck/.steam/root/config/uioverrides/
 
 # Randomizer
 
-Randomizer builds on Vidswap and provides two features: individual random set and on-boot randomization.
+Randomizer builds on Vidswap and provides two features: individual random set and on-boot randomization. It also now randomizes every time desktop mode is entered.
 
 If you'd like to set the next video randomly, execute randomizer.desktop (or run ./vidswap/randomzier.sh).
 
