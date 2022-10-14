@@ -13,9 +13,6 @@ js_path="/home/deck/.local/share/Steam/steamui/library.js"
 
 declare -A video_array
 
-file_to_pick=0
-filename_picked=""
-
 vid_size=0
 css_size=0
 js_size=0
@@ -35,42 +32,6 @@ js_checksum="604ef2fe25ed361688f089d8769e6c3a"
 # Reads $vid_override_path
 create_override () {
     mkdir -p $vid_override_path
-}
-
-#Create playlist file using filenames
-#$1 is directory to look in (defaults to "./vids")
-create_playlist () {
-    process_input_files $1
-    printf "%s\n" "${new_vid_files[@]}" >> "./bootvid_playlist.txt"
-}
-
-#Read playlist file into $active_playlist
-#$1 is filepath to playlist file (./bootvid_playlist.txt by default)
-#Sets $playlist_path
-read_playlist () {
-    playlist_path=${1:-'./bootvid_playlist.txt'}
-    readarray -t active_playlist < $playlist_path
-}
-
-#shuffle $active_playlist and rewrite playlist to $1 (./bootvid_playlist by default)
-#Sets $playlist_path
-#Sets $active_playlist
-shuffle_playlist () {
-    playlist_path=${1:-'./bootvid_playlist.txt'}
-    active_playlist=( $( shuf -e "${active_playlist[@]}" ) )
-    printf "%s\n" "${active_playlist[@]}" > "$playlist_path"
-}
-
-# https://stackoverflow.com/questions/339483/how-can-i-remove-the-first-line-of-a-text-file-using-bash-sed-script
-#Sets $filename_picked
-#Changes $playlist_path file
-pop_playlist_line () {
-    read_playlist
-    tail -n +2 "$playlist_path" > "$playlist_path.tmp" && mv "$playlist_path.tmp" "$playlist_path"
-    playlist_choice=${active_playlist[0]}
-    echo "Choice: ${playlist_choice[0]}"
-    echo ${playlist_choice[0]} >> $playlist_path
-    filename_picked="$( realpath $playlist_choice )"
 }
 
 # Display scaring warning
@@ -291,6 +252,48 @@ confirm_restore () {
     echo "Continuing with restore will copy $CSS_RESTORE to $css_path"
     echo "Continuing with restore will copy $JS_RESTORE to $js_path"
     prompt_continue
+}
+
+#Create playlist file using filenames
+#$1 is directory to look in (defaults to "./vids")
+#$2 is playlist to create (defaults to "./bootvid_playlist.txt")
+create_playlist () {
+    process_input_files $1
+    playlist_path=${2:-'./bootvid_playlist.txt'}
+    printf "%s\n" "${new_vid_files[@]}" > "$playlist_path"
+}
+
+#Read playlist file into $active_playlist
+#$1 is filepath to playlist file (./bootvid_playlist.txt by default)
+#Sets $playlist_path
+read_playlist () {
+    echo "playlist to read: $1"
+    playlist_path=${1:-'./bootvid_playlist.txt'}
+    readarray -t active_playlist < $playlist_path
+}
+
+#shuffle $active_playlist and rewrite playlist to $1 (./bootvid_playlist by default)
+#Sets $playlist_path
+#Sets $active_playlist
+shuffle_playlist () {
+    echo "playlist to shuffle: $1"
+    read_playlist $1
+    active_playlist=( $( shuf -e "${active_playlist[@]}" ) )
+    printf "%s\n" "${active_playlist[@]}" > "$playlist_path"
+}
+
+# https://stackoverflow.com/questions/339483/how-can-i-remove-the-first-line-of-a-text-file-using-bash-sed-script
+#Sets $filename_picked
+#Changes $playlist_path file
+#$1 is playlist_path to pop
+pop_playlist_line () {
+    playlist_path=${1:-'./bootvid_playlist.txt'}
+    read_playlist $playlist_path
+    tail -n +2 "$playlist_path" > "$playlist_path.tmp" && mv "$playlist_path.tmp" "$playlist_path"
+    playlist_choice=${active_playlist[0]}
+    echo "Choice: ${playlist_choice[0]}"
+    echo ${playlist_choice[0]} >> $playlist_path
+    filename_picked="$( realpath $playlist_choice )"
 }
 
 

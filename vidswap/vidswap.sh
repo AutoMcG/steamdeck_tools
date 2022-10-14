@@ -4,47 +4,46 @@ source ./vidswap_core.sh
 
 print_debug=false
 
-while getopts ":n:d" option; do
+while getopts ":d:p:" option; do
     case $option in
         d) #print debugging info
             print_debug=true;;
-        n) #number of video to choose
-            file_to_pick=$OPTARG;;
+        p) #playlist to use
+            playlist_mode=true
+            playlist_input=${OPTARG};;
         \?) #Invalid
             echo "Wrong usage"
             exit 1;;
     esac
 done
 
-process_input_files
+echo "playlist_mode: $playlist_mode"
 
-if [ $file_to_pick = "0" ]
+if [[ $playlist_mode=true ]]
 then
+    should_prompt=false
+else
+    should_prompt=true
+fi
+
+if [ "$should_prompt" = true ]
+then
+    process_input_files
     print_input_files
     prompt_for_vid_pick
-elif [ $file_to_pick = "p" ]
-then
-    if [ -f "./bootvid_playlist.txt" ]
-    then
-        read_playlist
-    else
-        create_playlist
-    fi
-    pop_playlist_line
-    install_files
 else
-    select_vid_file $file_to_pick
+    if [ -f "$playlist_input" ]
+    then
+        read_playlist $playlist_input
+    else
+        create_playlist "" $playlist_input
+    fi
+    pop_playlist_line $playlist_input
 fi
 
 create_override
-#get_sizes
 backup_originals
 print_actions
-#tmp only required for css and js edits with new overrides dir
-#css full screen edit no longer needed
-#copy_to_tmp
-#css_edit
-#truncate_tmp_files
 install_files
 
 if [ "$print_debug" = true ]

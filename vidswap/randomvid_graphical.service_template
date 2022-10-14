@@ -1,0 +1,10 @@
+[Unit]
+Description=Sets a random startup video on desktop mode switch
+
+[Service]
+Type=oneshot
+WorkingDirectory=WORKDIR
+ExecStart=/bin/bash SCRIPTDIR
+
+[Install]
+WantedBy=graphical-session.target
