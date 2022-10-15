@@ -46,7 +46,7 @@ To change the duration, execute change_duration.desktop (or run ./vidswap/change
 
 # Restore 
 
-Restore allows the user to replace library.css and library.js files with versions the user selects. Before any changes are made to either of these files, a copy is saved in ./vidswap/backup with the md5 checksum as part of the file name. Additionally, static versions of the files for known releases are stored in directories that follow the convention "BUILD_ID"_"VERSION_ID". 
+Restore allows the user to replace library.css, library.js, and deck_startup.webm files with versions the user selects. Before any changes are made to any of these files, a copy is saved in ./vidswap/backup with the md5 checksum as part of the file name. Additionally, static versions of the files for known releases are stored in directories that follow the convention "BUILD_ID"_"VERSION_ID". 
 
 To see what build and version your Steam Deck is running, execute `cat /etc/*-release` in terminal. 
 
