@@ -59,6 +59,13 @@ prompt_continue () {
     echo ""
 }
 
+# $1 is text to add to window
+# zenity sets $? to 0 if yes, 1 if no
+zenity_confirm () {
+    confirm_message=${1:-'Do you wish to continue?'}
+    zenity --question --title "Confirm" --text "$confirm_message" --ok-label="Yes" --cancel-label="No" --width=400 --height=200
+}
+
 # Prompt the user for a number from the vid file menu
 # Exit with code if invalid choice
 prompt_for_vid_pick () {
@@ -220,7 +227,8 @@ backup_originals () {
 restore_choice () {
     #restore css choice
     #code from https://help.gnome.org/users/zenity/stable/file-selection.html.en
-    CSS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.css to restore"`
+    suggested_backup="$(pwd)/backup/20221005.1_3.3.2/"
+    CSS_RESTORE=`zenity --file-selection --filename="$suggested_backup" --title="Select which library.css to restore"`
     case $? in
          0)
                 echo "Picked CSS: $CSS_RESTORE";;
@@ -232,7 +240,7 @@ restore_choice () {
     esac
 
 
-    JS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.js to restore"`
+    JS_RESTORE=`zenity --file-selection --filename="$suggested_backup" --title="Select which library.js to restore"`
     case $? in
          0)
                 echo "Picked JS: $JS_RESTORE";;
@@ -242,18 +250,51 @@ restore_choice () {
                 echo "An unexpected error has occurred."
                 exit 8;;
     esac
+
+    VID_RESTORE=`zenity --file-selection --filename="$suggested_backup" --title="Select which deck_startup.webm to restore"`
+    case $? in
+         0)
+                echo "Picked webm: $VID_RESTORE";;
+         1)
+                echo "No file selected.";;
+        -1)
+                echo "An unexpected error has occurred."
+                exit 8;;
+    esac
 }
 
 execute_restore () {
-    cp $CSS_RESTORE $css_path
-    cp $JS_RESTORE $js_path
+    if [ ! -z $CSS_RESTORE ]
+    then
+        cp $CSS_RESTORE $css_path
+    fi
+    if [ ! -z $JS_RESTORE ]
+    then
+        cp $JS_RESTORE $js_path
+    fi
+    if [ ! -z $VID_RESTORE ]
+    then
+        cp $VID_RESTORE $vid_path
+    fi
     echo "Files restored!"
 }
 
 confirm_restore () {
-    echo "Continuing with restore will copy $CSS_RESTORE to $css_path"
-    echo "Continuing with restore will copy $JS_RESTORE to $js_path"
-    prompt_continue
+    message="Continuing with restore will:\n"
+    if [ ! -z $CSS_RESTORE ]
+    then
+        message="$message\tCopy $CSS_RESTORE to $css_path\n"
+    fi
+    if [ ! -z $JS_RESTORE ]
+    then
+        message="$message\tCopy $JS_RESTORE to $js_path\n"
+    fi
+    if [ ! -z $VID_RESTORE ]
+    then
+        message="$message\tCopy $VID_RESTORE to $vid_path\n"
+    fi
+    echo "Message is $message"
+    zenity_confirm "$message"
 }
 
 
