@@ -59,6 +59,13 @@ prompt_continue () {
     echo ""
 }
 
+# $1 is text to add to window
+# zenity sets $? to 0 if yes, 1 if no
+zenity_confirm () {
+    confirm_message=${1:-'Do you wish to continue?'}
+    zenity --question --title "Confirm" --text "$confirm_message" --ok-label="Yes" --cancel-label="No" --width=400 --height=200
+}
+
 # Prompt the user for a number from the vid file menu
 # Exit with code if invalid choice
 prompt_for_vid_pick () {
@@ -273,19 +280,21 @@ execute_restore () {
 }
 
 confirm_restore () {
+    message="Continuing with restore will:\n"
     if [ ! -z $CSS_RESTORE ]
     then
-        echo "Continuing with restore will copy $CSS_RESTORE to $css_path"
+        message="$message\tCopy $CSS_RESTORE to $css_path\n"
     fi
     if [ ! -z $JS_RESTORE ]
     then
-        echo "Continuing with restore will copy $JS_RESTORE to $js_path"
+        message="$message\tCopy $JS_RESTORE to $js_path\n"
     fi
     if [ ! -z $VID_RESTORE ]
     then
-        echo "Continuing with restore will copy $VID_RESTORE to $vid_path"
+        message="$message\tCopy $VID_RESTORE to $vid_path\n"
     fi
-    prompt_continue
+    echo "Message is $message"
+    zenity_confirm "$message"
 }
 
 
