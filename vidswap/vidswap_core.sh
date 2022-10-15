@@ -220,7 +220,8 @@ backup_originals () {
 restore_choice () {
     #restore css choice
     #code from https://help.gnome.org/users/zenity/stable/file-selection.html.en
-    CSS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.css to restore"`
+    echo "Path: $(pwd)/vidswap/backup"
+    CSS_RESTORE=`zenity --file-selection --filename="$(pwd)/backup/20221005.1_3.3.2/" --title="Select which library.css to restore"`
     case $? in
          0)
                 echo "Picked CSS: $CSS_RESTORE";;
@@ -232,10 +233,21 @@ restore_choice () {
     esac
 
 
-    JS_RESTORE=`zenity --file-selection --filename="$(pwd)/vidswap/backup/" --title="Select which library.js to restore"`
+    JS_RESTORE=`zenity --file-selection --filename="$(pwd)/backup/20221005.1_3.3.2/" --title="Select which library.js to restore"`
     case $? in
          0)
                 echo "Picked JS: $JS_RESTORE";;
+         1)
+                echo "No file selected.";;
+        -1)
+                echo "An unexpected error has occurred."
+                exit 8;;
+    esac
+
+    VID_RESTORE=`zenity --file-selection --filename="$(pwd)/backup/20221005.1_3.3.2/" --title="Select which deck_startup.webm to restore"`
+    case $? in
+         0)
+                echo "Picked webm: $VID_RESTORE";;
          1)
                 echo "No file selected.";;
         -1)
@@ -247,12 +259,14 @@ restore_choice () {
 execute_restore () {
     cp $CSS_RESTORE $css_path
     cp $JS_RESTORE $js_path
+    cp $VID_RESTORE $vid_path
     echo "Files restored!"
 }
 
 confirm_restore () {
     echo "Continuing with restore will copy $CSS_RESTORE to $css_path"
     echo "Continuing with restore will copy $JS_RESTORE to $js_path"
+    echo "Continuing with restore will copy $VID_RESTORE to $vid_path"
     prompt_continue
 }
 
