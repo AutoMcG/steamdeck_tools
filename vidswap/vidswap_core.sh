@@ -174,7 +174,7 @@ truncate_tmp_files () {
 
 # Creates video symlink from $filename_picked
 install_vid () {
-    ln -sf $filename_picked "$vid_override_path/deck_startup.webm"
+    ln -sf "$filename_picked" "$vid_override_path/deck_startup.webm"
     #cp $tmp_css $css_path
 }
 
@@ -294,4 +294,33 @@ pop_playlist_line () {
     filename_picked="$( realpath $playlist_choice )"
 }
 
-
+#Read files in input directory, compare to playlist, append any that don't exist
+#$1 is filepath to playlist file (./bootvid_playlist.txt by default)
+#Sets $playlist_path
+update_playlist () {
+    playlist_path=${1:-'./bootvid_playlist.txt'}
+    read_playlist $playlist_path
+    process_input_files
+    declare -A temp1 temp2 # associative arrays
+    for element in "${new_vid_files[@]}"
+    do
+        ((temp1[$element]++))
+    done
+    for element in "${active_playlist[@]}"
+    do
+        ((temp2[$element]++))
+    done
+    for element in "${!temp1[@]}"
+    do
+        if (( ${temp1[$element]} >= 1 && ${temp2[$element]-0} >= 1 ))
+        then
+            unset "temp1[$element]" "temp2[$element]"
+        fi
+    done
+    new_files=(${!temp1[@]} ${!temp2[@]})
+    if [[ ${#new_files[@]} -gt 0 ]]
+    then
+        echo "Differences detected"
+        printf "%s\n" "${new_files[@]}" >> "$playlist_path"
+    fi
+}
