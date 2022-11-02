@@ -2,12 +2,10 @@
 
 source vidswap_core.sh
 
-random_playlist_path="random_playlist.txt"
+process_input_files
+count=${#new_vid_files[@]}
 
-if [ ! -f $random_playlist_path ]
-then
-    create_playlist "" $random_playlist_path
-    shuffle_playlist $random_playlist_path
-fi
+random_choice=$(( 1 + $RANDOM % $count ))
 
-./vidswap.sh -p $random_playlist_path
+echo "Selected $random_choice"
+./vidswap.sh -n $random_choice
