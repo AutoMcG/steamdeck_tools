@@ -75,7 +75,7 @@ prompt_for_vid_pick () {
         echo "Choice was not in range."
         exit 7
     fi
-    select_vid_file $choice
+    select_vid_file "$choice"
 }
 
 prompt_for_duration () {
@@ -130,7 +130,7 @@ print_input_files () {
 # $1 is the number of file to pick from menu
 select_vid_file () {
     file_to_pick=$1
-    filename_picked="$(realpath ${video_array[$file_to_pick]})"
+    filename_picked=$(realpath "${video_array[$file_to_pick]}")
     echo "$file_to_pick selected which corresponds to $filename_picked"
 }
 

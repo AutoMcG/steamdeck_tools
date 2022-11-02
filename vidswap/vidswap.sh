@@ -33,13 +33,12 @@ fi
 create_override
 #get_sizes
 backup_originals
-print_actions
 #tmp only required for css and js edits with new overrides dir
 #css full screen edit no longer needed
 #copy_to_tmp
 #css_edit
 #truncate_tmp_files
-install_files
+install_vid
 
 if [ "$print_debug" = true ]
 then
