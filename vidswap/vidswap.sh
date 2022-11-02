@@ -30,6 +30,7 @@ else
     select_vid_file $file_to_pick
 fi
 
+print_vid_actions
 create_override
 #get_sizes
 backup_originals
