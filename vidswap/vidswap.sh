@@ -20,7 +20,6 @@ done
 # (even though it means calling process_input_files in two places)
 if [[ $file_to_pick -eq 0 ]]
 then
-    prompt_continue
     process_input_files
     print_input_files
     prompt_for_vid_pick
