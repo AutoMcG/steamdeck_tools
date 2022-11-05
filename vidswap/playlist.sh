@@ -3,7 +3,7 @@
 source ./vidswap_core.sh
 
 # Get options
-while getopts ":d:p" option; do
+while getopts ":p" option; do
     case $option in
         p) #playlist to use
             playlist_input=${OPTARG};;

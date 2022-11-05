@@ -288,10 +288,11 @@ pop_playlist_line () {
     playlist_path=${1:-'./bootvid_playlist.txt'}
     read_playlist $playlist_path
     tail -n +2 "$playlist_path" > "$playlist_path.tmp" && mv "$playlist_path.tmp" "$playlist_path"
-    playlist_choice=${active_playlist[0]}
+    playlist_choice="${active_playlist[0]}"
     echo "Choice: ${playlist_choice[0]}"
-    echo ${playlist_choice[0]} >> $playlist_path
-    filename_picked="$( realpath $playlist_choice )"
+    echo "${playlist_choice[0]}" >> $playlist_path
+    filename_picked=$( realpath "${playlist_choice[0]}" )
+    echo "filename_picked: $filename_picked"
 }
 
 #Read files in input directory, compare to playlist, append any that don't exist
@@ -301,26 +302,37 @@ update_playlist () {
     playlist_path=${1:-'./bootvid_playlist.txt'}
     read_playlist $playlist_path
     process_input_files
-    declare -A temp1 temp2 # associative arrays
+    declare -A all temp1 temp2 # associative arrays
     for element in "${new_vid_files[@]}"
     do
         ((temp1[$element]++))
+        ((all[$element]++))
     done
     for element in "${active_playlist[@]}"
     do
         ((temp2[$element]++))
+        ((all[$element]++))
     done
-    for element in "${!temp1[@]}"
+    for element in "${!all[@]}"
     do
-        if (( ${temp1[$element]} >= 1 && ${temp2[$element]-0} >= 1 ))
+        if (( ${temp1[$element]-0} >= 1 && ${temp2[$element]-0} >= 1 ))
         then
             unset "temp1[$element]" "temp2[$element]"
+            #Left in temp1 is vid files not in playlist
+            #Left in temp2 is playlist entries that don't have videos
+        fi
+
+        #Remove entry from playlist without backing vid
+        if (( ${all[$element]} >= 1 && ${temp2[$element]-0} >= 1 ))
+        then
+            unset "all[$element]"
         fi
     done
+
     new_files=(${!temp1[@]} ${!temp2[@]})
     if [[ ${#new_files[@]} -gt 0 ]]
     then
         echo "Differences detected"
-        printf "%s\n" "${new_files[@]}" >> "$playlist_path"
+        printf "%s\n" "${!all[@]}" > "$playlist_path"
     fi
 }
