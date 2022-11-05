@@ -26,11 +26,11 @@ This has been updated to use the new `/home/deck/.steam/root/config/uioverrides/
 
 # Randomizer
 
-Randomizer builds on Vidswap and provides two features: individual random set and on-boot randomization.
+Randomizer builds on Vidswap and provides two features: individual random set and on-boot/mode switch randomization.
 
 If you'd like to set the next video randomly, execute randomizer.desktop (or run ./vidswap/randomzier.sh).
 
-If you'd like to set a new random video for every boot, execute random_every_boot.desktop (or run ./vidswap/random_service_install.sh).
+If you'd like to set a new random video for every boot and gaming mode -> desktop mode switch, execute random_every_boot.desktop (or run ./vidswap/random_service_install.sh).
 
 To stop the random every boot, execute uninstall_every_boot.desktop (or run ./vidswap/random_service_uninstall.sh).
 
@@ -46,7 +46,7 @@ To change the duration, execute change_duration.desktop (or run ./vidswap/change
 
 # Restore 
 
-Restore allows the user to replace library.css and library.js files with versions the user selects. Before any changes are made to either of these files, a copy is saved in ./vidswap/backup with the md5 checksum as part of the file name. Additionally, static versions of the files for known releases are stored in directories that follow the convention "BUILD_ID"_"VERSION_ID". 
+Restore allows the user to replace library.css, library.js, and deck_startup.webm files with versions the user selects. Before any changes are made to any of these files, a copy is saved in ./vidswap/backup with the md5 checksum as part of the file name. Additionally, static versions of the files for known releases are stored in directories that follow the convention "BUILD_ID"_"VERSION_ID". 
 
 To see what build and version your Steam Deck is running, execute `cat /etc/*-release` in terminal. 
 
