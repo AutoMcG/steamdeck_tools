@@ -38,7 +38,7 @@ To stop the random every boot, execute uninstall_every_boot.desktop (or run ./vi
 
 # ChangeDuration
 
-The Steam Deck will play boot videos up to 10 seconds in duration by default. ChangeDuration allows you to set any reasonable duration you desire in 10 second increments. This is done by modifying library.js (and the same truncate pattern we're all used to). 
+The Steam Deck will play boot videos up to 30 seconds in duration by default. ChangeDuration allows you to set any reasonable duration you desire in 10 second increments. This is done by modifying library.js (and the same truncate pattern we're all used to). 
 
 If the duration set in library.js is longer than the boot video, the Steam Deck will enter into gaming mode as soon as the video is done playing (and the Deck is done booting). 
 
