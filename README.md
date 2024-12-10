@@ -1,6 +1,19 @@
+# This project is no longer maintained or tested. 
+# Uninstall is recommended: 
+To uninstall most versions, double-click on the "uninstall_every_boot.desktop" file in the same directory you installed the tools from. 
+If that doesn't work, run this command in Konsole:
+`systemctl --user disable --now randomvid.service`
+
+Then, delete /home/deck/.steam/root/config/uioverrides/movies/deck_startup.webm. 
+In older versions, /home/deck/.local/share/Steam/steamui/movies/deck_startup.webm will need restored. 
+
+The library.css and library.js files should restore on any SteamOS update. 
+
 # steamdeck_tools
 
 A repository for a random grouping of tools created for the Steam Deck.
+
+
 
 # Install
 
